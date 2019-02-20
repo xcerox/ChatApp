@@ -11,8 +11,16 @@
     "apk": "cd android && gradlew assembleRelease && cd .. && rm -rf apk && mkdir apk && mv android/app/build/outputs/apk/release/app-release.apk apk/"
   },
   "dependencies": {
+    "firebase": "^5.8.3",
+    "lodash": "^4.17.11",
     "react": "16.6.3",
-    "react-native": "0.58.5"
+    "react-native": "0.58.5",
+    "react-native-i18n": "^2.0.15",
+    "react-navigation": "^3.3.0",
+    "react-redux": "^6.0.1",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
+    "relative-date": "^1.1.3"
   },
   "devDependencies": {
     "babel-core": "7.0.0-bridge.0",
