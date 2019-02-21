@@ -8,4 +8,7 @@ export default {
   error: 'Error',
   you: 'You',
   noMessage: 'There are no messages yet',
+  haveAccount: "Don't have an account? ",
+  singUp: 'Sign up.',
+
 }
