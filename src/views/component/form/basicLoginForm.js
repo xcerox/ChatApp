@@ -8,6 +8,7 @@ import {
   Item as FormItem,
   Input,
   Label,
+  Icon
 } from 'native-base';
 import { View, Image } from 'react-native';
 import translations from '../../../i18n';
@@ -46,12 +47,14 @@ class BasicLoginForm extends PureComponent {
           </View>
           <View style={[styles.form.formGroup, styles.login.loginFormHeight]}>
             <FormItem floatingLabel style={styles.form.input}>
+              <Icon active name='person' />
               <Label> {translations.t('email')} </Label>
               <Input value={email} onChangeText={this.onEmailChange} />
             </FormItem>
-            <FormItem floatingLabel style={styles.form.input}>
+            <FormItem floatingLabel style={styles.form.input} error={false}>
+              <Icon active name='lock' />
               <Label> {translations.t('password')} </Label>
-              <Input secureTextEntry={true} value={password} onChangeText={this.onPasswordChange} />
+              <Input secureTextEntry={true} value={password} onChangeText={this.onPasswordChange}/>
             </FormItem>
           </View>
           <View style={styles.form.formGroup}>

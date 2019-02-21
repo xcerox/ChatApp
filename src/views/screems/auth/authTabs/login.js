@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import { View, Text } from 'react-native';
+import { Toast, Root } from 'native-base';
 // import { connect } from 'react-redux
 import BasicLoginForm from '../../../component/form/basicLoginForm';
 // import { loginUser } from '../../../../store/actions/sessionActions';
@@ -14,20 +15,26 @@ class Login extends PureComponent {
   }
 
   onLoginPress = user => {
-    alert(`email: ${user.email}`);
+    if (!user.email && !user.password) {
+      Toast.show({
+        text: 'Wrong user and password!',
+        buttonText: "Ok",
+      });
+    }
   }
 
   render() {
     return (
-      <BasicLoginForm
-        buttonTitle={translations.t('login')}
-        onButtonPress={this.onLoginPress} >
-        <View style={styles.login.singup}>
-          <Text>{translations.t('haveAccount')}</Text>
-          <Text style={styles.general.link}>{translations.t('singUp')}</Text>
-        </View>
-        
-      </BasicLoginForm>
+      <Root>
+        <BasicLoginForm
+          buttonTitle={translations.t('login')}
+          onButtonPress={this.onLoginPress} >
+          <View style={styles.login.singup}>
+            <Text>{translations.t('haveAccount')}</Text>
+            <Text style={styles.general.link}>{translations.t('singUp')}</Text>
+          </View>
+        </BasicLoginForm>
+      </Root>
     )
   }
 }
