@@ -9,6 +9,9 @@ export default {
   you: 'You',
   noMessage: 'There are no messages yet',
   haveAccount: "Don't have an account? ",
-  singUp: 'Sign up.',
+  ok: 'Ok',
+  userOrPasswordEmpty: 'Email and password are required',
+  newAccount: 'New account',
+
 
 }

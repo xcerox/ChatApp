@@ -36,8 +36,10 @@ class BasicLoginForm extends PureComponent {
 
   render() {
 
-    const { buttonTitle, children } = this.props;
+    const { buttonTitle, children, register, hasChild } = this.props;
     const { email, password } = this.state;
+
+    let child = (hasChild) ? children : null;
 
     return (
       <Container style={styles.general.Container}>
@@ -54,15 +56,15 @@ class BasicLoginForm extends PureComponent {
             <FormItem floatingLabel style={styles.form.input} error={false}>
               <Icon active name='lock' />
               <Label> {translations.t('password')} </Label>
-              <Input secureTextEntry={true} value={password} onChangeText={this.onPasswordChange}/>
+              <Input secureTextEntry={true} value={password} onChangeText={this.onPasswordChange} />
             </FormItem>
           </View>
           <View style={styles.form.formGroup}>
-            <Button full success style={styles.form.submit} onPress={this.onButtonPress}>
+            <Button full success={!register} primary={register} style={styles.form.submit} onPress={this.onButtonPress}>
               <Text> {buttonTitle} </Text>
             </Button>
             {
-              (children)
+              child
             }
           </View>
         </Content>
@@ -73,6 +75,8 @@ class BasicLoginForm extends PureComponent {
 
 BasicLoginForm.propTypes = {
   buttonTitle: PropTypes.string.isRequired,
+  register: PropTypes.bool,
+  hasChild: PropTypes.bool,
   onButtonPress: PropTypes.func.isRequired,
 }
 

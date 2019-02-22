@@ -3,15 +3,15 @@ import firebaseService from '../../utils/services/firebaseService';
 import * as types from '../utils/types/sessionTypes';
 
 const sessionRestoring = createAction(types.SESSION_RESTORING);
-const sessionSuccess = createAction(types.SESSION_SUCCESS, 'payload');
+const sessionSuccess = createAction(types.SESSION_SUCCESS, 'user');
 const sessionLogout = createAction(types.SESSION_LOGOUT);
 const sessionLoading = createAction(types.SESSION_LOADING);
-const sessionError = createAction(types.SESSION_ERROR, 'payload');
+const sessionError = createAction(types.SESSION_ERROR, 'error');
 
 const sessionRestore = createActionThunk((_, dispatch) => {
   dispatch(sessionRestoring());
 
-  const unsebscribe = firebaseService
+  const unsubscribe = firebaseService
     .auth()
     .onAuthStateChanged(user => {
       if (user) {
@@ -20,17 +20,17 @@ const sessionRestore = createActionThunk((_, dispatch) => {
         dispatch(sessionLogout());
       }
 
-      unsebscribe();
+      unsubscribe();
     })
 
 });
 
-const loginUser = createActionThunk((props, dispatch) => {
+const loginUser = createActionThunk((user, dispatch) => {
   dispatch(sessionLoading());
 
   firebaseService
     .auth()
-    .signInWithEmailAndPassword(props.email, props.password)
+    .signInWithEmailAndPassword(user.email, user.password)
     .catch(err => {
       dispatch(sessionError(err.message));
     });
@@ -46,11 +46,11 @@ const loginUser = createActionThunk((props, dispatch) => {
 
 });
 
-const signupUser = createActionThunk((props, dispatch) => {
+const signupUser = createActionThunk((user, dispatch) => {
   dispatch(sessionLoading())
 
   firebaseService.auth()
-    .createUserWithEmailAndPassword(props.email, props.password)
+    .createUserWithEmailAndPassword(user.email, user.password)
     .catch(error => {
       dispatch(sessionError(error.message));
     })
@@ -64,5 +64,24 @@ const signupUser = createActionThunk((props, dispatch) => {
     })
 });
 
+const logout = createActionThunk((_, dispatch) => {
+  dispatch(sessionError);
 
-export { sessionRestore, loginUser, signupUser }
+  firebaseService
+    .auth()
+    .signOut()
+    .then(() => {
+      dispatch(sessionLogout());
+    })
+    .catch(err => {
+      dispatch(sessionError(err.message))
+    })
+
+});
+
+const thunkTest = createActionThunk((_, dispatch) => {
+  console.log('test');
+});
+
+
+export { signupUser }

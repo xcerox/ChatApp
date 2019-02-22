@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
-    "android": "react-native run-android",
+    "aos": "react-native run-android",
     "upw": "emulator @N4_A25",
     "uph": "emulator @Nexus_5_API_25",
     "apk": "cd android && gradlew assembleRelease && cd .. && rm -rf apk && mkdir apk && mv android/app/build/outputs/apk/release/app-release.apk apk/"
@@ -20,6 +20,7 @@
     "react-navigation": "2",
     "react-redux": "^6.0.1",
     "redux": "^4.0.1",
+    "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "relative-date": "^1.1.3"
   },

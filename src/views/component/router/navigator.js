@@ -1,9 +1,11 @@
 import React from 'react';
 import { createStackNavigator } from 'react-navigation';
-import Login from '../../screems/auth/authTabs/login';
+import Login from '../../screems/auth/login';
+import SingUp from '../../screems/auth/signUp';
 
 const Navigator = createStackNavigator({
   Login: Login,
+  SingUp: SingUp,
 },
   {
     initialRouteName: "Login"
