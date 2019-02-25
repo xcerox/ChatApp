@@ -32,7 +32,17 @@ const loginUser = createActionThunk((user, dispatch) => {
     .auth()
     .signInWithEmailAndPassword(user.email, user.password)
     .catch(err => {
-      dispatch(sessionError(err.message));
+      let keyMessage = 'serverError';
+
+      if (err.code === "auth/user-not-found") {
+        keyMessage = 'wrongEmail'
+      } else if (err.code === "auth/wrong-password") {
+        keyMessage = 'wrongpassword'
+      } else if (err.code === "auth/invalid-email") {
+        keyMessage = 'InvalidEmail'
+      }
+
+      dispatch(sessionError(keyMessage));
     });
 
   const unsubscribe = firebaseService

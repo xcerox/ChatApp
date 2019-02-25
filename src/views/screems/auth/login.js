@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import { View, Text, TouchableOpacity } from 'react-native';
 import { Toast, Root } from 'native-base';
 import { connect } from 'react-redux';
@@ -9,7 +9,7 @@ import { loginUser } from '../../../store/actions/sessionActions'
 import * as styles from '../../styles/style';
 
 
-class Login extends PureComponent {
+class Login extends Component {
 
   static navigationOptions = {
     header: null
@@ -17,27 +17,40 @@ class Login extends PureComponent {
 
   onLoginPress = user => {
     if (!user.email || !user.password) {
-      Toast.show({
-        text: translations.t('userOrPasswordEmpty'),
-        buttonText: translations.t('ok'),
-        type: 'danger',
-        position: 'top',
-      });
+      this.showError('userOrPasswordEmpty');
     } else {
       this.props.login(user);
     }
   }
 
-  onSignUpPress = () =>{
+  onSignUpPress = () => {
     this.props.navigation.navigate('SingUp');
   }
 
+  componentDidUpdate(props) {
+    if (props.error) {
+      this.showError(props.error);
+    }
+  }
+
+  showError = key => {
+    const message = translations.t(key);
+
+    Toast.show({
+      text: message,
+      buttonText: translations.t('ok'),
+      type: 'danger',
+      position: 'top',
+    });
+  }
+
   render() {
+
     return (
       <Root>
         <BasicLoginForm
           buttonTitle={translations.t('login')}
-          onButtonPress={this.onLoginPress} 
+          onButtonPress={this.onLoginPress}
           hasChild>
           <View style={styles.login.singup}>
             <Text>{translations.t('haveAccount')}</Text>
@@ -51,4 +64,8 @@ class Login extends PureComponent {
   }
 }
 
-export default connect(null, { login: loginUser })(Login);
+const map = ({ session }) => ({
+  error: session.error
+})
+
+export default connect(map, { login: loginUser })(Login);
