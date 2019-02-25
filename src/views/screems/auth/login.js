@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { View, Text, TouchableOpacity } from 'react-native';
 import { Toast, Root } from 'native-base';
 import { connect } from 'react-redux';
@@ -9,7 +9,7 @@ import { loginUser } from '../../../store/actions/sessionActions'
 import * as styles from '../../styles/style';
 
 
-class Login extends Component {
+class Login extends PureComponent {
 
   static navigationOptions = {
     header: null

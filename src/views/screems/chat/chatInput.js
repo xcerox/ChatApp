@@ -9,7 +9,7 @@ import * as styles from '../../styles/style';
 const OPACITY_ENABLED = 1.0;
 const OPACITY_DISABLED = 0.2;
 
-const MessageForm = props => {
+const ChatInput = props => {
 
   const onMessageChange = message => {
     props.updateMessage(message);
@@ -43,11 +43,11 @@ const MessageForm = props => {
 }
 
 
-MessageForm.prototype = {
+ChatInput.prototype = {
   updateMessage: PropTypes.func.isRequired,
   sendMessage: PropTypes.func.isRequired,
   message: PropTypes.string.isRequired,
   sending: PropTypes.bool.isRequired,
 }
 
-export default MessageForm;
+export default ChatInput;

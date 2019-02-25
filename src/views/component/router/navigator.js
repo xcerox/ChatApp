@@ -2,13 +2,15 @@ import React from 'react';
 import { createStackNavigator } from 'react-navigation';
 import Login from '../../screems/auth/login';
 import SingUp from '../../screems/auth/signUp';
+import Chat from '../../screems/chat/chat';
 
 const Navigator = createStackNavigator({
-  Login: Login,
-  SingUp: SingUp,
+  Login,
+  SingUp,
+  Chat,
 },
   {
-    initialRouteName: "Login"
+    initialRouteName: "Chat"
   }
 );
 

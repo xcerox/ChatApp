@@ -3,6 +3,9 @@ import { StyleSheet } from 'react-native';
 const colors = {
   white: '#fff',
   green: '#5cb85c',
+  greenLight: '#b5e0ba',
+  blueLight: '#8ed6ff',
+  gray: '#BBC2C2',
 }
 
 const general = StyleSheet.create({
@@ -56,4 +59,63 @@ const login = StyleSheet.create({
   }
 })
 
-export { general, form, login }
+const chat = StyleSheet.create({
+  generalContainer: {
+    flex: 1,
+    backgroundColor: colors.white,
+    flexDirection: 'column',
+    height: '100%',
+  },
+  chatViewContainer: {
+    display: 'flex',
+    flex: 1,
+    flexDirection: 'column',
+    backgroundColor: colors.white,
+  },
+  chatViewlistContainer: {
+    flexGrow: 1,
+    justifyContent: 'center',
+  },
+  chatViewplaceholder: {
+    fontSize: 16,
+    color: colors.white,
+    textAlign: 'center'
+  },
+
+  chatViewRowContainer: {
+    flex: 1,
+    padding: 8,
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: colors.white,
+  },
+  chatViewRowBubble: {
+    flex: 1,
+    borderRadius: 8,
+    paddingTop: 6,
+    paddingHorizontal: 8,
+    paddingBottom: 1
+  },
+  chatViewRowBubbleMe: {
+    backgroundColor: colors.greenLight,
+    alignItems: 'flex-end',
+    marginLeft: 50,
+  },
+  chatViewRowBubbleYou: {
+    backgroundColor: colors.blueLight,
+    justifyContent: 'flex-start',
+    marginRight: 50,
+  },
+  chatViewRowUserText: {
+    color: colors.white,
+    fontWeight: 'bold',
+    fontSize: 12,
+  },
+  chatViewRowMessageText: {
+    flex: 1,
+    color: colors.white,
+    fontSize: 16,
+  }
+});
+
+export { general, form, login, chat }
