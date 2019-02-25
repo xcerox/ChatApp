@@ -1,10 +1,10 @@
 import React, { PureComponent } from 'react'
 import { View, Text, TouchableOpacity } from 'react-native';
 import { Toast, Root } from 'native-base';
-// import { connect } from 'react-redux;
+import { connect } from 'react-redux';
 import translations from '../../../i18n';
 import BasicLoginForm from '../../component/form/basicLoginForm';
-// import { loginUser } from '../../../../store/actions/sessionActions';
+import { loginUser } from '../../../store/actions/sessionActions'
 
 import * as styles from '../../styles/style';
 
@@ -20,10 +20,11 @@ class Login extends PureComponent {
       Toast.show({
         text: translations.t('userOrPasswordEmpty'),
         buttonText: translations.t('ok'),
-        type: 'danger'
+        type: 'danger',
+        position: 'top',
       });
     } else {
-      // this.props.login(user);
+      this.props.login(user);
     }
   }
 
@@ -50,5 +51,4 @@ class Login extends PureComponent {
   }
 }
 
-// export default connect(null, { login: loginUser })(Login);
-export default Login;
+export default connect(null, { login: loginUser })(Login);

@@ -24,6 +24,8 @@ class SignUp extends PureComponent {
       Toast.show({
         text: translations.t('userOrPasswordEmpty'),
         buttonText: translations.t('ok'),
+        type: 'danger',
+        position: 'top',
       });
     } else {
       this.props.signup(user);

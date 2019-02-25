@@ -19,7 +19,8 @@ class BasicLoginForm extends PureComponent {
 
   state = {
     email: '',
-    password: ''
+    password: '',
+    showPassword: false,
   }
 
   onEmailChange = email => {
@@ -34,12 +35,19 @@ class BasicLoginForm extends PureComponent {
     this.props.onButtonPress(this.state);
   }
 
+  onShowPasswordChange = () => {
+    this.setState(prevState => {
+      return { showPassword: !prevState.showPassword }
+    });
+  }
+
   render() {
 
     const { buttonTitle, children, register, hasChild } = this.props;
-    const { email, password } = this.state;
+    const { email, password, showPassword } = this.state;
 
     let child = (hasChild) ? children : null;
+    const showPasswordIcon = showPassword ? 'eye-off' : 'eye';
 
     return (
       <Container style={styles.general.Container}>
@@ -56,7 +64,8 @@ class BasicLoginForm extends PureComponent {
             <FormItem floatingLabel style={styles.form.input} error={false}>
               <Icon active name='lock' />
               <Label> {translations.t('password')} </Label>
-              <Input secureTextEntry={true} value={password} onChangeText={this.onPasswordChange} />
+              <Input secureTextEntry={!showPassword} value={password} onChangeText={this.onPasswordChange} />
+              <Icon active name={showPasswordIcon} onPress={this.onShowPasswordChange} />
             </FormItem>
           </View>
           <View style={styles.form.formGroup}>

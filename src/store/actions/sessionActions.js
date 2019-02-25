@@ -84,4 +84,4 @@ const thunkTest = createActionThunk((_, dispatch) => {
 });
 
 
-export { signupUser }
+export { signupUser, loginUser }
