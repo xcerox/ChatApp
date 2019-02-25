@@ -27,12 +27,6 @@ class Login extends Component {
     this.props.navigation.navigate('SingUp');
   }
 
-  componentDidUpdate(props) {
-    if (props.error) {
-      this.showError(props.error);
-    }
-  }
-
   showError = key => {
     const message = translations.t(key);
 
@@ -45,6 +39,10 @@ class Login extends Component {
   }
 
   render() {
+
+    if (this.props.error) {
+      this.showError(this.props.error);
+    }
 
     return (
       <Root>
