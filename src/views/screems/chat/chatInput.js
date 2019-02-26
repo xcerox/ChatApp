@@ -23,20 +23,22 @@ const ChatInput = props => {
   // const opacity = isButtonDisabled ? OPACITY_DISABLED : OPACITY_ENABLED;
 
   return (
-    <View >
-      <View >
+    <View style={styles.chat.chatInputContainer}>
+      <View style={{width: '80%'}} >
         <FormItem rounded>
           <Input
+            style={styles.chat.chatInputMessage}
             placeholder={translations.t('message')}
             value={props.message}
             onChangeText={onMessageChange}
             underlineColorAndroid={'transparent'}
             editable={!props.sending}
-            returnKeyType='send' />
+            returnKeyType='send' 
+            />
         </FormItem>
       </View>
-      <View >
-        <Icon active name='send' color={'red'} onPress={onButtomPress} />
+      <View style={styles.chat.chatInputBottomBackground}>
+        <Icon active name='send' onPress={onButtomPress} />
       </View>
     </View>
   )

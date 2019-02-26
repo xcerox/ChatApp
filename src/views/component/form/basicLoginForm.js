@@ -13,7 +13,7 @@ import {
 import { View, Image } from 'react-native';
 import translations from '../../../i18n';
 import * as styles from '../../styles/style';
-import logo from '../../../assets/logo/chatLogo.png';
+import logo from '../../../assets/images/chatLogo.png';
 
 class BasicLoginForm extends PureComponent {
 

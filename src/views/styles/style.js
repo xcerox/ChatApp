@@ -4,8 +4,9 @@ const colors = {
   white: '#fff',
   green: '#5cb85c',
   greenLight: '#b5e0ba',
-  blueLight: '#8ed6ff',
+  blueLight: '#defcfc',
   gray: '#BBC2C2',
+  grayDark: '#738598',
 }
 
 const general = StyleSheet.create({
@@ -62,15 +63,17 @@ const login = StyleSheet.create({
 const chat = StyleSheet.create({
   generalContainer: {
     flex: 1,
-    backgroundColor: colors.white,
     flexDirection: 'column',
     height: '100%',
+  },
+  backgroundImage: {
+    height: '100%',
+    width: '100%'
   },
   chatViewContainer: {
     display: 'flex',
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: colors.white,
   },
   chatViewlistContainer: {
     flexGrow: 1,
@@ -84,20 +87,22 @@ const chat = StyleSheet.create({
 
   chatViewRowContainer: {
     flex: 1,
-    padding: 8,
+    paddingHorizontal: 8,
+    paddingBottom: 5,
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.white,
   },
   chatViewRowBubble: {
     flex: 1,
     borderRadius: 8,
+    borderColor: colors.gray,
+    borderWidth: 1,
     paddingTop: 6,
     paddingHorizontal: 8,
     paddingBottom: 1
   },
   chatViewRowBubbleMe: {
-    backgroundColor: colors.greenLight,
+    backgroundColor: colors.white,
     alignItems: 'flex-end',
     marginLeft: 50,
   },
@@ -107,14 +112,44 @@ const chat = StyleSheet.create({
     marginRight: 50,
   },
   chatViewRowUserText: {
-    color: colors.white,
-    fontWeight: 'bold',
+    color: colors.grayDark,
     fontSize: 12,
   },
+  chatViewRowUserTextMe: {
+    alignSelf: 'flex-start',
+  },
+  chatViewRowUserTextYou: {
+    alignSelf: 'flex-end',
+  },
   chatViewRowMessageText: {
+    color: '#000',
+    fontSize: 14,
+  },
+
+  chatInputContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    minWidth: '100%',
+    paddingTop: 20,
+    paddingBottom: 10,
+    paddingLeft: 6,
+  },
+  chatInputMessage: {
     flex: 1,
-    color: colors.white,
-    fontSize: 16,
+    backgroundColor: colors.white,
+    borderRadius: 25,
+  },
+  chatInputBottomBackground: {
+    backgroundColor: colors.blueLight,
+    borderRadius: 50,
+    borderWidth: 1,
+    borderColor: colors.gray,
+    width: 50,
+    height: 50,
+    marginLeft: 15,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingLeft: 5,
   }
 });
 
