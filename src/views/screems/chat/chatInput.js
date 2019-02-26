@@ -38,7 +38,7 @@ const ChatInput = props => {
         </FormItem>
       </View>
       <View style={styles.chat.chatInputBottomBackground}>
-        <Icon active name='send' onPress={onButtomPress} />
+        <Icon name='send' onPress={onButtomPress} />
       </View>
     </View>
   )

@@ -7,17 +7,20 @@ import translations from '../../../i18n'
 import backgroundChat from '../../../assets/images/backgroundChat.jpg';
 
 class Chat extends PureComponent {
-  
+
   static navigationOptions = {
     title: translations.t('chat')
   }
 
   render() {
+
     return (
       <View style={chat.generalContainer}>
-        <ImageBackground source={backgroundChat} resizeMode="repeat" style={chat.backgroundImage}>
-          <ChatView />
-          <ChatInput />
+        <ImageBackground source={backgroundChat} resizeMode='cover' style={chat.backgroundImage}>
+          <View style={chat.backgroundImageOverlay}>
+            <ChatView />
+            <ChatInput />
+          </View>
         </ImageBackground>
       </View >
     )

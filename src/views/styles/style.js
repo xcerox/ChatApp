@@ -64,11 +64,18 @@ const chat = StyleSheet.create({
   generalContainer: {
     flex: 1,
     flexDirection: 'column',
+    width: '100%',
     height: '100%',
   },
-  backgroundImage: {
+  backgroundImageOverlay: {
+    flex: 1,
+    flexDirection: 'column',
+    width: '100%',
     height: '100%',
-    width: '100%'
+    backgroundColor:'rgba(0,0,0,0.2)',
+  },
+  backgroundImage: {
+    flex: 1,
   },
   chatViewContainer: {
     display: 'flex',
@@ -99,7 +106,16 @@ const chat = StyleSheet.create({
     borderWidth: 1,
     paddingTop: 6,
     paddingHorizontal: 8,
-    paddingBottom: 1
+    paddingBottom: 1,
+
+    //Its for IOS
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+
+    // its for android 
+    elevation: 2,
   },
   chatViewRowBubbleMe: {
     backgroundColor: colors.white,
@@ -107,7 +123,7 @@ const chat = StyleSheet.create({
     marginLeft: 50,
   },
   chatViewRowBubbleYou: {
-    backgroundColor: colors.blueLight,
+    backgroundColor: '#a4f6a5',
     justifyContent: 'flex-start',
     marginRight: 50,
   },
@@ -138,11 +154,12 @@ const chat = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.white,
     borderRadius: 25,
+    elevation: 2,
   },
   chatInputBottomBackground: {
-    backgroundColor: colors.blueLight,
-    borderRadius: 50,
-    borderWidth: 1,
+    backgroundColor: '#a4f6a5',
+    borderRadius: 75,
+    borderWidth: 2,
     borderColor: colors.gray,
     width: 50,
     height: 50,
@@ -150,6 +167,7 @@ const chat = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingLeft: 5,
+    elevation: 10,
   }
 });
 

@@ -22,6 +22,8 @@ class ChatView extends PureComponent {
     return (<Text style={styles.chatViewplaceholder}> {translations.t('placeholder')} </Text>);
   }
 
+  keyExtractor = (item, _) => `${item.id}`;
+
   componentDidUpdate() {
     if (this.props.data.length) {
       this.flatList.scrollToIndex({ animated: true, index: 0 });
@@ -38,9 +40,9 @@ class ChatView extends PureComponent {
         style={styles.container}
         contentContainerStyle={style}
         data={data}
-        keyExtractor={item => item.time}
         renderItem={this.renderItem}
         ListEmptyComponent={this.emptyList}
+        keyExtractor={this.keyExtractor}
         inverted />
     )
   }
