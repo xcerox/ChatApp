@@ -1,11 +1,11 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import store from './store';
-import Navigator from './views/component/router/navigator';
+import Router from './views/component/router/router';
 
 const App = () => (
   <Provider store={store} >
-    <Navigator />
+    <Router />
   </Provider>
 )
 

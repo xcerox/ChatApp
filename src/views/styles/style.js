@@ -19,7 +19,7 @@ const general = StyleSheet.create({
     alignItems: 'center',
   },
   center: {
-    marginTop: '50%',
+    marginTop: '75%',
   },
   logo: {
     height: 120,
@@ -29,6 +29,10 @@ const general = StyleSheet.create({
   link: {
     color: colors.green,
     fontSize: 15,
+  },
+  loadingText: {
+    alignSelf: 'center', 
+    marginLeft: 15
   }
 })
 
@@ -41,6 +45,7 @@ const form = StyleSheet.create({
     marginTop: 25,
     width: 300,
     borderRadius: 25,
+    alignSelf: 'center'
   },
   formGroup: {
     flex: 1,
@@ -72,7 +77,7 @@ const chat = StyleSheet.create({
     flexDirection: 'column',
     width: '100%',
     height: '100%',
-    backgroundColor:'rgba(0,0,0,0.2)',
+    backgroundColor: 'rgba(0,0,0,0.2)',
   },
   backgroundImage: {
     flex: 1,
@@ -118,12 +123,12 @@ const chat = StyleSheet.create({
     elevation: 2,
   },
   chatViewRowBubbleMe: {
-    backgroundColor: colors.white,
+    backgroundColor: '#a4f6a5',
     alignItems: 'flex-end',
     marginLeft: 50,
   },
   chatViewRowBubbleYou: {
-    backgroundColor: '#a4f6a5',
+    backgroundColor: colors.white,
     justifyContent: 'flex-start',
     marginRight: 50,
   },

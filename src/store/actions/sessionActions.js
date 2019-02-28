@@ -91,9 +91,5 @@ const logout = createActionThunk((_, dispatch) => {
 
 });
 
-const thunkTest = createActionThunk((_, dispatch) => {
-  console.log('test');
-});
 
-
-export { signupUser, loginUser }
+export { signupUser, loginUser, sessionRestore, logout }

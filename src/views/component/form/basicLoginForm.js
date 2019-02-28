@@ -50,7 +50,7 @@ class BasicLoginForm extends PureComponent {
     const showPasswordIcon = showPassword ? 'eye-off' : 'eye';
 
     return (
-      <Container style={styles.general.Container}>
+      <Container >
         <Content>
           <View style={styles.form.formGroup}>
             <Image source={logo} style={styles.general.logo} />

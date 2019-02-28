@@ -1,10 +1,12 @@
 import React from 'react'
-import { View, ActivityIndicator } from 'react-native'
-import { loadingStyle } from '../../styles/style'
+import { View, Text } from 'react-native'
+import { Spinner as ActivityIndicator } from 'native-base'
+import { general } from '../../styles/style'
+
 
 const Spinner = () =>
-  <View style={loadingStyle.loadingContainer}>
-    <ActivityIndicator style={loadingStyle.loadingIndicator} />
+  <View style={general.center}>
+    <ActivityIndicator  color={'#5cb85c'}/>
   </View>
 
 export default Spinner;

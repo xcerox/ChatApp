@@ -17,4 +17,5 @@ export default {
   limittrylogin: 'Oh oh, you tried login too many times please try again later',
   newAccount: 'New account',
   serverError: `the server it's inavailable, try later`,
+  restoring: 'Restoring ... ',
 }
