@@ -22,7 +22,7 @@ const handler = {
     return { restoring: false, loading: false, user: null, error: action.error }
   },
   [types.SESSION_LOGOUT]: (state, action) => {
-    return initialState
+    return initial
   },
 }
 
