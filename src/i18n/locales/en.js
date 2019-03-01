@@ -18,4 +18,5 @@ export default {
   newAccount: 'New account',
   serverError: `the server it's inavailable, try later`,
   restoring: 'Restoring ... ',
+  messagesEmpty: 'No messages',
 }

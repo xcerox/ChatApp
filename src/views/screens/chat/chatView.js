@@ -4,9 +4,12 @@ import PropTypes from 'prop-types';
 import translations from '../../../i18n';
 import ChatViewRow from './chatViewRow';
 import { chat as styles } from '../../styles/style';
-import { messages } from '../../../utils/helpers/messages.mock'
 
 const ITEM_HEIGHT = 50;
+
+const EmptyListMessage = props => (
+  <Text style={styles.chatViewplaceholder}> {translations.t('messagesEmpty')} </Text>
+)
 
 class ChatView extends PureComponent {
 
@@ -19,7 +22,7 @@ class ChatView extends PureComponent {
   )
 
   emptyList = () => {
-    return (<Text style={styles.chatViewplaceholder}> {translations.t('placeholder')} </Text>);
+    return (<EmptyListMessage />);
   }
 
   keyExtractor = (item, _) => `${item.id}`;
@@ -31,7 +34,7 @@ class ChatView extends PureComponent {
   }
 
   render() {
-    const data = messages;
+    const data = [];
     const style = data.length ? null : styles.chatViewlistContainer;
 
     return (

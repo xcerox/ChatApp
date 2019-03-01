@@ -8,8 +8,7 @@
     "android": "react-native run-android",
     "upw": "emulator @N4_A25",
     "uph": "emulator @Nexus_5_API_25",
-    "build:apk": "cd android && gradlew assembleRelease && cd ..",
-    "build:apk:move": "rm -rf _dist/apk && cd _dist && mkdir apk && cd .. && mv ./android/app/build/outputs/apk/release/app-release.apk _dist/apk/"
+    "build:apk": "cd android && gradlew assembleRelease && cd .. && rm -rf _dist/apk && cd _dist && mkdir apk && cd .. && mv ./android/app/build/outputs/apk/release/app-release.apk _dist/apk/"
   },
   "dependencies": {
     "firebase": "^5.8.3",

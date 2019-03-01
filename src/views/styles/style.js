@@ -31,7 +31,7 @@ const general = StyleSheet.create({
     fontSize: 15,
   },
   loadingText: {
-    alignSelf: 'center', 
+    alignSelf: 'center',
     marginLeft: 15
   }
 })
@@ -77,7 +77,7 @@ const chat = StyleSheet.create({
     flexDirection: 'column',
     width: '100%',
     height: '100%',
-    backgroundColor: 'rgba(0,0,0,0.2)',
+    backgroundColor: 'rgba(0,0,0,0.4)',
   },
   backgroundImage: {
     flex: 1,
@@ -94,7 +94,9 @@ const chat = StyleSheet.create({
   chatViewplaceholder: {
     fontSize: 16,
     color: colors.white,
-    textAlign: 'center'
+    textAlign: 'center',
+    fontWeight: 'bold',
+    transform: [{ scaleX: -1 }, { rotate: '180deg' }]
   },
 
   chatViewRowContainer: {
