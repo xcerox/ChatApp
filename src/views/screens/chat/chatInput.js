@@ -1,55 +1,59 @@
 import React, { PureComponent } from 'react'
-import { View, TextInput, TouchableOpacity, Image, Alert } from 'react-native';
-import { Item as FormItem, Input, Icon } from 'native-base';
+import { View } from 'react-native';
+import { Item as FormItem, Input, Icon, Button } from 'native-base';
 import PropTypes from 'prop-types'
 import translations from '../../../i18n';
 import * as styles from '../../styles/style';
 
+class ChatInput extends PureComponent {
 
-const OPACITY_ENABLED = 1.0;
-const OPACITY_DISABLED = 0.2;
-
-const ChatInput = props => {
-
-  const onMessageChange = message => {
-    props.updateMessage(message);
+  state = {
+    message: ''
   }
 
-  const onButtomPress = () => {
-    props.sendMessage(props.message);
+  onMessageChange = message => {
+    this.setState({ message });
   }
 
-  // const isButtonDisabled = props.sending || props.message.trim().length == 0;
-  // const opacity = isButtonDisabled ? OPACITY_DISABLED : OPACITY_ENABLED;
+  onButtomPress = () => {
 
-  return (
-    <View style={styles.chat.chatInputContainer}>
-      <View style={{width: '80%'}} >
-        <FormItem rounded>
-          <Input
-            style={styles.chat.chatInputMessage}
-            placeholder={translations.t('message')}
-            value={props.message}
-            onChangeText={onMessageChange}
-            underlineColorAndroid={'transparent'}
-            editable={!props.sending}
-            returnKeyType='send' 
-            />
-        </FormItem>
+  }
+
+  render() {
+    const disable = this.props.sending || this.state.message.trim().length == 0;
+    const disableStyle = disable?{backgroundColor: '#f0ece2'}:{};
+    const disbleBottom = disable?{color: 'red'}:{};
+
+    return (
+      <View style={styles.chat.chatInputContainer}>
+        <View style={{width: '80%'}} >
+          <FormItem rounded>
+            <Input
+              style={styles.chat.chatInputMessage}
+              placeholder={translations.t('message')}
+              value={this.state.message}
+              onChangeText={this.onMessageChange}
+              underlineColorAndroid={'transparent'}
+              editable={true}
+              returnKeyType='send' 
+              />
+          </FormItem>
+        </View>
+        <View style={[styles.chat.chatInputBottomBackground, disableStyle]}>
+          <Button transparent disabled={disable} onPress={this.onButtomPress} >
+            <Icon name='send' style={[{color: 'green'}, disbleBottom]} />
+          </Button>
+          
+        </View>
       </View>
-      <View style={styles.chat.chatInputBottomBackground}>
-        <Icon name='send' onPress={onButtomPress} />
-      </View>
-    </View>
-  )
+    )
+  }
 }
 
 
-ChatInput.prototype = {
-  updateMessage: PropTypes.func.isRequired,
-  sendMessage: PropTypes.func.isRequired,
-  message: PropTypes.string.isRequired,
-  sending: PropTypes.bool.isRequired,
-}
+// ChatInput.prototype = {
+//   sendMessage: PropTypes.func.isRequired,
+//   sending: PropTypes.bool.isRequired,
+// }
 
 export default ChatInput;

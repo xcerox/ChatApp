@@ -6,9 +6,13 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
     "android": "react-native run-android",
+    "android:clean": "cd android && gradlew clean && cd ..",
+    "ios": "react-native run-ios",
+    "ios:clean": "cd ios && xcodebuild clean && cd ..",
     "upw": "emulator @N4_A25",
     "uph": "emulator @Nexus_5_API_25",
     "build:apk": "cd android && gradlew assembleRelease && cd .. && rm -rf _dist/apk && cd _dist && mkdir apk && cd .. && mv ./android/app/build/outputs/apk/release/app-release.apk _dist/apk/"
+    
   },
   "dependencies": {
     "firebase": "^5.8.3",
