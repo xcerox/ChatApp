@@ -7,13 +7,9 @@ import { chat as styles } from '../../styles/style'
 import { connect } from 'react-redux'
 import { mapChatItems } from '../../../utils/helpers/convertUtil'
 
-const ITEM_HEIGHT = 50;
-
-const EmptyListMessage = props => (
-  <Text style={styles.chatViewplaceholder}> {translations.t('messagesEmpty')} </Text>
-)
-
 class ChatView extends PureComponent {
+
+  ITEM_HEIGHT = 50;
 
 
   renderItem = ({ item }) => {
@@ -21,11 +17,11 @@ class ChatView extends PureComponent {
   }
 
   itemLayout = (_, index) => (
-    { length: ITEM_HEIGHT, offset: ITEM_HEIGHT * index, index }
+    { length: this.ITEM_HEIGHT, offset: this.ITEM_HEIGHT * index, index }
   )
 
   emptyList = () => {
-    return (<EmptyListMessage />);
+    return (<Text style={styles.chatViewplaceholder}> {translations.t('messagesEmpty')} </Text>);
   }
 
   keyExtractor = (item, _) => `${item.id}`;
