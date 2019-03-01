@@ -43,7 +43,7 @@ class ChatInput extends PureComponent {
               value={this.state.message}
               onChangeText={this.onMessageChange}
               underlineColorAndroid={'transparent'}
-              editable={true}
+              editable={!this.props.sending}
               returnKeyType='send'
             />
           </FormItem>
@@ -52,12 +52,16 @@ class ChatInput extends PureComponent {
           <Button transparent disabled={disable} onPress={this.onButtomPress} >
             <Icon name='send' style={[{ color: 'green' }, disbleBottom]} />
           </Button>
-
         </View>
       </View>
     )
   }
 }
+
+// ChatInput.prototype = {
+//   sending: PropTypes.bool,
+//   sendMessage: PropTypes.func,
+// }
 
 const map = ({ chat }) => ({
   sending: chat.sending,

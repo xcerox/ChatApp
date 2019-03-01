@@ -1,12 +1,11 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import PropTypes from 'prop-types';
-import translations from '../../../i18n';
 import relativeDate from 'relative-date';
 import { chat as styles } from '../../styles/style';
 
 const ChatViewRow = props => {
-  const isCurrentUser = props.message.user.email.includes("me");
+  const isCurrentUser = props.message.user.email === props.currentEmail;
   const senderStyle = isCurrentUser ? styles.chatViewRowBubbleMe : styles.chatViewRowBubbleYou;
   const messageStyle = isCurrentUser ? styles.chatViewRowUserTextMe : styles.chatViewRowUserTextYou;
   const userName = isCurrentUser ? '' : (`- ${props.message.user.email}`);
@@ -27,6 +26,7 @@ const ChatViewRow = props => {
 }
 
 ChatViewRow.prototype = {
+  currentEmail: PropTypes.string.isRequired,
   message: PropTypes.shape({
     createdAt: PropTypes.number.isRequired,
     text: PropTypes.string.isRequired,

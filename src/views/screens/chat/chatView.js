@@ -1,9 +1,11 @@
-import React, { PureComponent } from 'react';
-import { View, Text, FlatList } from 'react-native';
-import PropTypes from 'prop-types';
-import translations from '../../../i18n';
-import ChatViewRow from './chatViewRow';
-import { chat as styles } from '../../styles/style';
+import React, { PureComponent } from 'react'
+import { Text, FlatList } from 'react-native'
+import PropTypes from 'prop-types'
+import translations from '../../../i18n'
+import ChatViewRow from './chatViewRow'
+import { chat as styles } from '../../styles/style'
+import { connect } from 'react-redux'
+import { mapChatItems } from '../../../utils/helpers/convertUtil'
 
 const ITEM_HEIGHT = 50;
 
@@ -13,8 +15,9 @@ const EmptyListMessage = props => (
 
 class ChatView extends PureComponent {
 
+
   renderItem = ({ item }) => {
-    return <ChatViewRow message={item} />
+    return (<ChatViewRow message={item} currentEmail={this.props.userEmail} />);
   }
 
   itemLayout = (_, index) => (
@@ -28,21 +31,20 @@ class ChatView extends PureComponent {
   keyExtractor = (item, _) => `${item.id}`;
 
   componentDidUpdate() {
-    if (this.props.data.length) {
+    if (this.props.messages.length) {
       this.flatList.scrollToIndex({ animated: true, index: 0 });
     }
   }
 
   render() {
-    const data = [];
-    const style = data.length ? null : styles.chatViewlistContainer;
+    const style = this.props.messages.length ? null : styles.chatViewlistContainer;
 
     return (
       <FlatList
         ref={ref => { this.flatList = ref }}
         style={styles.container}
         contentContainerStyle={style}
-        data={data}
+        data={this.props.messages}
         renderItem={this.renderItem}
         ListEmptyComponent={this.emptyList}
         keyExtractor={this.keyExtractor}
@@ -51,5 +53,9 @@ class ChatView extends PureComponent {
   }
 }
 
+const map = ({chat, session}) => ({
+  messages: mapChatItems(chat.messages),
+  userEmail: session.user.email,
+});
 
-export default ChatView;
+export default connect(map)(ChatView);
