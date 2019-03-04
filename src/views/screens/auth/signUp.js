@@ -1,11 +1,10 @@
 import React, { PureComponent } from 'react'
-import { Toast, Root } from 'native-base';
+import { Toast, Root } from 'native-base'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import translations from '../../../i18n';
+import translations from '../../../i18n'
 import BasicLoginForm from '../../component/form/basicLoginForm'
-import { signupUser } from '../../../store/actions/sessionActions';
-
+import { signupUser } from '../../../store/actions/sessionActions'
 
 class SignUp extends PureComponent {
 
@@ -13,9 +12,9 @@ class SignUp extends PureComponent {
     title: translations.t('newAccount')
   }
 
-  componentDidUpdate(props) {
-    if (props.error) {
-      this.showError(error);
+  componentDidUpdate(prevProps) {
+    if (!prevProps.error && this.props.error) {
+      this.showError(this.props.error);
     }
   }
 
@@ -31,22 +30,25 @@ class SignUp extends PureComponent {
       this.props.signup(user);
     }
   }
-  
-  showError = message => {
+
+  showError = key => {
+    const message = translations.t(key);
+
     Toast.show({
       text: message,
       buttonText: translations.t('ok'),
-      type: 'danger'
+      type: 'danger',
+      position: 'top',
     });
   }
 
   render() {
-    const { err } = this.props;
     return (
       <Root>
         <BasicLoginForm
           buttonTitle={translations.t('signup')}
           onButtonPress={this.onRegisterPress}
+          showLoading={this.props.loading}
           register
         />
       </Root>
@@ -54,8 +56,9 @@ class SignUp extends PureComponent {
   }
 }
 
-// SignUp.prototype = {
-//   signup: PropTypes.func.isRequired,
-// }
+const map = ({ session }) => ({
+  loading: session.loading,
+  error: session.error
+})
 
-export default connect(null, {signup:signupUser})(SignUp);
+export default connect(map, { signup: signupUser })(SignUp);

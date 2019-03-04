@@ -2,7 +2,7 @@ import * as types from '../utils/types/sessionTypes';
 import { createReducer } from '../utils/helpers/reducerFactory';
 
 const initial = {
-  retoring: false,
+  restoring: true,
   loading: false,
   user: null,
   error: null,
@@ -22,7 +22,7 @@ const handler = {
     return { restoring: false, loading: false, user: null, error: action.error }
   },
   [types.SESSION_LOGOUT]: (state, action) => {
-    return initial
+    return { ...initial, restoring: false }
   },
 }
 

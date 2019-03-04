@@ -1,38 +1,50 @@
 import React, { PureComponent } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, NetInfo } from 'react-native'
 import { connect } from 'react-redux'
 import Chat from '../../screens/chat/'
 import Navigator from './navigator'
-import Spinner from '../loading/spinner'
+import Loading from '../loading'
+import NoConnection from '../error/NoConnection'
 import { sessionRestore } from '../../../store/actions/sessionActions'
-import { general } from '../../styles/style'
-import translations from '../../../i18n' 
 
-const Loading = () => {
-  return (
-    <View >
-      <Spinner />
-      <Text style={general.loadingText}> {translations.t('restoring')}</Text>
-    </View>
-  ) 
-}
 
 
 class Router extends PureComponent {
 
+  state = {
+    hasInternet: true
+  }
+
   componentDidMount() {
-    this.props.sessionRestore();
+    NetInfo.isConnected.fetch().then(isConnected => {
+      this.onConectionChange(isConnected);
+    });
+
+    NetInfo.isConnected.addEventListener('connectionChange', this.onConectionChange);
+  }
+
+  componentWillUnmount() {
+    NetInfo.isConnected.removeEventListener('connectionChange', this.onConectionChange);
+  }
+
+  restoreSession = () => {
+    if (this.state.hasInternet) {
+      this.props.sessionRestore();
+    }
+  }
+
+  onConectionChange = isConnected => {
+    this.setState({ hasInternet: isConnected }, this.restoreSession)
   }
 
   render() {
-    let Component = null;
-
-    if (this.props.restoring) {
+    let Component = Navigator;
+    if (!this.state.hasInternet) {
+      Component = NoConnection;
+    } else if (this.props.restoring) {
       Component = Loading;
     } else if (this.props.logged) {
       Component = Chat;
-    } else { 
-      Component = Navigator;
     }
 
     return (

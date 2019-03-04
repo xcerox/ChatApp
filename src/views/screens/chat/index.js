@@ -1,14 +1,14 @@
 import React, { PureComponent } from 'react'
 import { Text } from 'react-native'
 import Chat from './chat'
-import { Container, Header, Content, Body, Right, Icon, Button } from 'native-base'
+import { Container, Header, Content, Body, Right, Icon, Title } from 'native-base'
 import { logout } from '../../../store/actions/sessionActions'
 import { loadMessages } from '../../../store/actions/chatActions'
 import { connect } from 'react-redux'
 
 class ChatWrapper extends PureComponent {
 
-  componentDidMount(){
+  componentDidMount() {
     this.props.loadMessages();
   }
 
@@ -21,9 +21,9 @@ class ChatWrapper extends PureComponent {
       <Container>
         <Header androidStatusBarColor='#5893d4' style={{ backgroundColor: 'white' }}>
           <Body >
-            <Text style={{ color: 'black', fontSize: 18, }}>
+            <Title style={{color: 'black'}}>
               Chat
-          </Text>
+            </Title>
           </Body>
           <Right >
             <Icon name='log-out' style={{ fontSize: 25, color: 'red' }} onPress={this.logOut} />

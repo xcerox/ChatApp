@@ -63,8 +63,15 @@ const signupUser = createActionThunk((user, dispatch) => {
 
   firebaseService.auth()
     .createUserWithEmailAndPassword(user.email, user.password)
-    .catch(error => {
-      dispatch(sessionError(error.message));
+    .catch(err => {
+
+      let keyMessage = 'serverError';
+
+      if (err.code === "auth/email-already-in-use") {
+        keyMessage = 'emailInUse';
+      } 
+
+      dispatch(sessionError(keyMessage));
     })
 
   let unsubscribe = firebaseService.auth()

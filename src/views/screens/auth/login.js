@@ -1,13 +1,12 @@
 import React, { PureComponent } from 'react'
 import { View, Text, TouchableOpacity } from 'react-native';
-import { Toast, Root, Container, Content } from 'native-base';
+import { Toast, Root} from 'native-base';
 import { connect } from 'react-redux';
 import translations from '../../../i18n';
 import BasicLoginForm from '../../component/form/basicLoginForm';
 import { loginUser } from '../../../store/actions/sessionActions'
 
 import * as styles from '../../styles/style';
-
 
 class Login extends PureComponent {
 
@@ -50,6 +49,8 @@ class Login extends PureComponent {
         <BasicLoginForm
           buttonTitle={translations.t('login')}
           onButtonPress={this.onLoginPress}
+          loading
+          showLoading={this.props.loading}
           hasChild>
           <View style={styles.login.singup}>
             <Text>{translations.t('haveAccount')}</Text>
@@ -64,7 +65,8 @@ class Login extends PureComponent {
 }
 
 const map = ({ session }) => ({
+  loading: session.loading,
   error: session.error
 })
 
-export default connect(map, { loginUser })(Login);
+export default connect(map, { loginUser})(Login);
