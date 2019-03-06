@@ -1,8 +1,8 @@
 export const firebaseConfig = {
-  apiKey: "AIzaSyBK_eMm6LnyoFnYbeCuG8QuDzxZw_2pC4U",
-  authDomain: "chatapp-2d937.firebaseapp.com",
-  databaseURL: "https://chatapp-2d937.firebaseio.com",
-  projectId: "chatapp-2d937",
-  storageBucket: "chatapp-2d937.appspot.com",
-  messagingSenderId: "558195652432"
+  apiKey: "<API_KEY>",
+  authDomain: "<PROJECT_ID>.firebaseapp.com",
+  databaseURL: "https://<DATABASE_NAME>.firebaseio.com",
+  projectId: "<PROJECT_ID>",
+  storageBucket: "<BUCKET>.appspot.com",
+  messagingSenderId: "<SENDER_ID>",
 }
