@@ -1,17 +1,23 @@
 import React from 'react'
-import { KeyboardAvoidingView } from 'react-native'
+import { KeyboardAvoidingView, ImageBackground, View } from 'react-native'
 import ChatView from './chatView'
 import ChatInput from './chatInput';
+import { chat } from '../../styles/style'
+import backgroundChat from '../../../assets/images/backgroundChat.jpg'
 
 const Chat = props => (
-  <KeyboardAvoidingView
-    style={{}}
-    behavior='padding'
-    keyboardVerticalOffset={64}>
+  <View style={chat.generalContainer}>
+    <ImageBackground source={backgroundChat} resizeMode='cover' style={chat.backgroundImage}>
+      <KeyboardAvoidingView
+        style={chat.backgroundImageOverlay}
+        behavior='padding'
+        keyboardVerticalOffset={64}>
+        <ChatView />
+        <ChatInput />
+      </KeyboardAvoidingView>
+    </ImageBackground>
+  </View>
 
-    <ChatView />
-    <ChatInput />
-  </KeyboardAvoidingView>
 )
 
 export default Chat;

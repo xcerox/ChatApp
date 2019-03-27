@@ -8,6 +8,7 @@
     "android": "react-native run-android",
     "android:clean": "cd android && gradlew clean && cd ..",
     "ios": "react-native run-ios",
+    "ios:upw": "react-native run-ios --simulator=",
     "ios:clean": "cd ios && xcodebuild clean && cd ..",
     "upw": "emulator @N4_A25",
     "uph": "emulator @Nexus_5_API_25",
