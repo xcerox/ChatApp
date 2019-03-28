@@ -3,7 +3,7 @@ import { createStackNavigator } from 'react-navigation';
 import Login from '../../screens/auth/login';
 import SingUp from '../../screens/auth/signUp';;
 
-const Navigator = createStackNavigator({
+const AuthNavigator = createStackNavigator({
   Login,
   SingUp,
 },
@@ -12,4 +12,4 @@ const Navigator = createStackNavigator({
   }
 );
 
-export default Navigator;
+export default AuthNavigator;

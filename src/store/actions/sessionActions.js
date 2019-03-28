@@ -75,9 +75,18 @@ const signupUser = createActionThunk((user, dispatch) => {
     })
 
   let unsubscribe = firebaseService.auth()
-    .onAuthStateChanged(user => {
-      if (user) {
-        dispatch(sessionSuccess(user))
+    .onAuthStateChanged(userAuth => {
+      if (userAuth) {
+
+        firebaseService
+          .database()
+          .ref('users')
+          .child(userAuth.uid).set({
+            name: user.nickname,
+            email: userAuth.email
+          });
+
+        dispatch(sessionSuccess(userAuth))
         unsubscribe()
       }
     })

@@ -1,18 +1,18 @@
 import React, { PureComponent } from 'react'
-import { View, Text, NetInfo } from 'react-native'
+import { View, Text, NetInfo, AppState } from 'react-native'
 import { connect } from 'react-redux'
 import Chat from '../../screens/chat/'
-import Navigator from './navigator'
+import AuthNavigator from './authNavigator'
 import Loading from '../loading'
 import NoConnection from '../error/NoConnection'
 import { sessionRestore } from '../../../store/actions/sessionActions'
-
-
+import { updateUserStatus } from '../../../utils/helpers/sessionUtil'
 
 class Router extends PureComponent {
 
   state = {
-    hasInternet: true
+    hasInternet: true,
+    appState: AppState.currentState,
   }
 
   componentDidMount() {
@@ -21,10 +21,20 @@ class Router extends PureComponent {
     });
 
     NetInfo.isConnected.addEventListener('connectionChange', this.onConectionChange);
+    AppState.addEventListener('change', this.onAppStateChange);
+  }
+
+  componentDidUpdate() {
+    if (this.props.logged && !this.state.appState.match(/inactive|background/))  {
+      updateUserStatus('Online');
+    } else if (this.props.logged && this.state.appState.match(/background/)) {
+      updateUserStatus('Await');
+    }
   }
 
   componentWillUnmount() {
     NetInfo.isConnected.removeEventListener('connectionChange', this.onConectionChange);
+    AppState.removeEventListener('change', this.onAppStateChange);
   }
 
   restoreSession = () => {
@@ -33,12 +43,16 @@ class Router extends PureComponent {
     }
   }
 
+  onAppStateChange = nextAppState => {
+    this.setState({ appState: nextAppState });
+  }
+
   onConectionChange = isConnected => {
     this.setState({ hasInternet: isConnected }, this.restoreSession)
   }
 
   render() {
-    let Component = Navigator;
+    let Component = AuthNavigator;
     if (!this.state.hasInternet) {
       Component = NoConnection;
     } else if (this.props.restoring) {

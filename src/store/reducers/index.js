@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
 import chat from './chatReducer';
 import session from './sessionReducer';
+import onlines from './onlinesReducer';
 
 const rootReducer = combineReducers({
   chat,
-  session
+  session,
+  onlines,
 });
 
 export default rootReducer;

@@ -19,9 +19,9 @@ class SignUp extends PureComponent {
   }
 
   onRegisterPress = user => {
-    if (!user.email || !user.password) {
+    if (!user.email || !user.password || !user.nickname) {
       Toast.show({
-        text: translations.t('userOrPasswordEmpty'),
+        text: translations.t('userPasswordAndNicknaemEmpty'),
         buttonText: translations.t('ok'),
         type: 'danger',
         position: 'top',

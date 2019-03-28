@@ -19,17 +19,16 @@ import logo from '../../../assets/images/chatLogo.png';
 class BasicLoginForm extends PureComponent {
 
   state = {
+    nickname: '',
     email: '',
     password: '',
     showPassword: false,
   }
 
-  onEmailChange = email => {
-    this.setState({ email })
-  }
-
-  onPasswordChange = password => {
-    this.setState({ password })
+  generateStateChanger = key => {
+    return value => {
+      this.setState({ [key]: value })
+    }
   }
 
   onButtonPress = () => {
@@ -45,7 +44,7 @@ class BasicLoginForm extends PureComponent {
   render() {
 
     const { buttonTitle, children, register, showLoading, hasChild } = this.props;
-    const { email, password, showPassword } = this.state;
+    const { nickname, email, password, showPassword } = this.state;
 
     let child = (hasChild) ? children : null;
     const showPasswordIcon = showPassword ? 'eye-off' : 'eye';
@@ -58,15 +57,22 @@ class BasicLoginForm extends PureComponent {
               <Image source={logo} style={styles.general.logo} />
             </View>
             <View style={[styles.form.formGroup, styles.login.loginFormHeight]}>
+              {register && (
+                <FormItem floatingLabel style={styles.form.input}>
+                  <Icon active name='person' />
+                  <Label> {translations.t('displayName')} </Label>
+                  <Input value={nickname} onChangeText={this.generateStateChanger('nickname')} />
+                </FormItem>
+              )}
               <FormItem floatingLabel style={styles.form.input}>
-                <Icon active name='person' />
+                <Icon active name='at' />
                 <Label> {translations.t('email')} </Label>
-                <Input value={email} onChangeText={this.onEmailChange} />
+                <Input value={email} onChangeText={this.generateStateChanger('email')} />
               </FormItem>
               <FormItem floatingLabel style={styles.form.input} error={false}>
                 <Icon active name='lock' />
                 <Label> {translations.t('password')} </Label>
-                <Input secureTextEntry={!showPassword} value={password} onChangeText={this.onPasswordChange} />
+                <Input secureTextEntry={!showPassword} value={password} onChangeText={this.generateStateChanger('password')} />
                 <Icon active name={showPasswordIcon} onPress={this.onShowPasswordChange} />
               </FormItem>
             </View>

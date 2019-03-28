@@ -1,6 +1,7 @@
 export default {
   login: 'Login',
   signup: 'Sign Up',
+  displayName: 'Nickname',
   email: 'Email',
   password: 'Password',
   chat: 'Chat',
@@ -11,6 +12,7 @@ export default {
   haveAccount: "Don't have an account? ",
   ok: 'Ok',
   userOrPasswordEmpty: 'Email and password are required',
+  userPasswordAndNicknaemEmpty: 'Email, password and nickname are required',
   wrongpassword: 'Oops, wrong password!',
   wrongEmail: `Oops, email no found!`,
   InvalidEmail: `Oops, email malformed try with sth@sth.sth`,
@@ -21,4 +23,5 @@ export default {
   loading: 'Loading ... ',
   messagesEmpty: 'No messages',
   noConnection: 'Oops, No Connection.',
+
 }
